@@ -103,7 +103,7 @@ export default function Packages() {
             <td className="whitespace-nowrap">
               <button className="hover:text-black m-2"><PiPencilSimpleDuotone size={20} /></button>
               <button className="hover:text-black m-2"
-              onClick={()=> router.push(`/contests/view-contest?id=${row.id}`)}
+                onClick={() => router.push(`/contests/view-contest?id=${row.id}`)}
               ><PiEyeDuotone size={20} /></button>
               <button className="hover:text-black m-2"><AiTwotoneDelete size={20} /></button>
             </td>
