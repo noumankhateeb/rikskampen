@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface NavbarState {
   isHamburgerOpen: boolean;
@@ -15,8 +15,11 @@ const navbarSlice = createSlice({
     toggleHamburger: (state) => {
       state.isHamburgerOpen = !state.isHamburgerOpen;
     },
+    setHamburgerOpen: (state, action: PayloadAction<boolean>) => {
+      state.isHamburgerOpen = action.payload;
+    },
   },
 });
 
-export const { toggleHamburger } = navbarSlice.actions;
+export const { toggleHamburger, setHamburgerOpen } = navbarSlice.actions;
 export default navbarSlice.reducer;
