@@ -15,6 +15,7 @@ export default function Sidebar() {
     const dispatch = useDispatch();
     const { activeMenu } = useSelector((state: RootState) => state.sidebar);
     const { isHamburgerOpen } = useSelector((state: RootState) => state.navbar);
+    console.log('Aaaaaaa', isHamburgerOpen);
     const pathname = usePathname();
 
     // State to track if we're on a mobile viewport (width less than 768px)
@@ -22,13 +23,18 @@ export default function Sidebar() {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+            if (mobile) {
+                console.log('Hi, I Hit here')
+                dispatch(setHamburgerOpen(false));
+            }
         };
-        // Set initial value
+        // Set the initial value and dispatch if necessary
         handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, [dispatch]);
 
     // In mobile mode, if the sidebar is not open, render nothing.
     if (isMobile && !isHamburgerOpen) {
@@ -36,13 +42,10 @@ export default function Sidebar() {
     }
 
     return (
-        <div
-            className={`h-screen bg-white border-r border-gray-200 transition-all duration-300 flex flex-col ${isMobile ? "fixed inset-y-0 left-0 w-72 z-50" : isHamburgerOpen ? "w-72" : "w-20"}`}
-        >
+        <div className={`h-screen bg-white border-r border-gray-200 transition-all duration-300 flex flex-col ${isMobile ? "fixed inset-y-0 left-0 w-72 z-50" : isHamburgerOpen ? "w-72" : "w-20"}`}>
+
             {/* Header / Logo area */}
-            <div
-                className={`flex items-center h-16 p-4 ${isMobile || isHamburgerOpen ? "justify-between" : "justify-center"}`}
-            >
+            <div className={`flex items-center h-16 p-4 ${isMobile || isHamburgerOpen ? "justify-between" : "justify-center"}`}>
                 {(isMobile || isHamburgerOpen) ? (
                     <>
                         <img
@@ -71,10 +74,9 @@ export default function Sidebar() {
             {/* Navigation area */}
             <nav className="custom-scroll flex flex-col flex-1 overflow-y-auto p-4 font-semibold text-gray-600">
                 {sidebarItems.map((item, index) => {
+
                     const isActiveParent = activeMenu === item.title;
-                    const hasActiveChild = item.children?.some(
-                        (subItem) => subItem.path === pathname
-                    );
+                    const hasActiveChild = item.children?.some((subItem) => subItem.path === pathname);
 
                     return (
                         <div key={index}>

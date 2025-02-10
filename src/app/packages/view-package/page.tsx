@@ -1,16 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { AiTwotoneDelete } from "react-icons/ai";
-import { BiFilterAlt } from "react-icons/bi";
-import { FaPlus } from "react-icons/fa6";
-import { MdOutlineDelete } from "react-icons/md";
-import {
-  PiPencilSimpleDuotone,
-  PiEyeDuotone,
-} from "react-icons/pi";
-import CustomTable from "../components/CustomTable";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 
 interface Package {
   id: number;
@@ -43,94 +35,112 @@ const packages: Package[] = [
   { id: 10, packageName: "ULTRA", prizePool: "200,000", currency: "KR", adminFee: "800", price: "19999", image: "https://i.pinimg.com/736x/de/70/e4/de70e47188c2922080f7b707cf732035.jpg", age: "All", groupType: "duo", installmentsPlan: "300 / 12 MÅN / PERS", packageType: "senior", contest: "Rikskampen", createdBy: "Super Admin", status: "Show", createdAt: "2019-02-24 13:50:30" },
 ];
 
-export default function Packages() {
-  const [search, setSearch] = useState("");
+export default function ViewPackage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const packageId = searchParams.get("id");
 
-  const columns = [
-    { key: "packageName", label: "Package Name" },
-    { key: "prizePool", label: "Prize Pool" },
-    { key: "currency", label: "Currency" },
-    { key: "adminFee", label: "Admin Fee" },
-    { key: "price", label: "Price" },
-    { key: "image", label: "Image" },
-    { key: "age", label: "Age" },
-    { key: "groupType", label: "Group Type" },
-    { key: "installmentsPlan", label: "Installments Plan" },
-    { key: "packageType", label: "Package Type" },
-    { key: "contest", label: "Contest" },
-    { key: "createdBy", label: "Created By" },
-    { key: "status", label: "Status" },
-    // { key: "createdAt", label: "Created At" },
-    { key: "Action", label: "Actions", center: true },
-  ];
+  const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
+
+  useEffect(() => {
+    if (packageId) {
+      const foundPackage = packages.find(
+        (pkg) => pkg.id === Number(packageId)
+      );
+      if (foundPackage) {
+        setSelectedPackage(foundPackage);
+      }
+    }
+  }, [packageId]);
+
+  if (!selectedPackage) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-gray-600 text-lg">Package not found.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-white rounded-lg shadow-md relative h-auto flex flex-auto flex-col p-5">
+    <div className="bg-white rounded-lg shadow-md p-6 mx-auto">
+      <button
+        className="flex items-center gap-2 text-gray-700 hover:text-black mb-4"
+        onClick={() => router.push("/packages")}
+      >
+        <FaArrowLeft size={18} />
+        Back to Packages
+      </button>
 
-      {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-center mb-4 space-y-4 md:space-y-0">
-        <h2 className="font-bold text-2xl">Packages</h2>
-        <div className="flex gap-2">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            onClick={() => router.push("/contests/add-contest")}>
-            <FaPlus size={20} />
-            Add new
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 border rounded-md text-gray-700 hover:outline-none hover:ring-2 hover:ring-red-500">
-            <MdOutlineDelete size={20} />
-            Bulk Delete
-          </button>
+      <h2 className="text-2xl font-bold text-center mb-4">
+        {selectedPackage.packageName}
+      </h2>
+
+      <img
+        src={selectedPackage.image}
+        alt={selectedPackage.packageName}
+        className="w-full h-auto rounded mb-4"
+      />
+
+      <div className="space-y-3">
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Prize Pool:</p>
+          <p className="text-gray-800">
+            {selectedPackage.prizePool} {selectedPackage.currency}
+          </p>
+        </div>
+
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Admin Fee:</p>
+          <p className="text-gray-800">{selectedPackage.adminFee}</p>
+        </div>
+
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Price:</p>
+          <p className="text-gray-800">{selectedPackage.price}</p>
+        </div>
+
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Age Group:</p>
+          <p className="text-gray-800">{selectedPackage.age}</p>
+        </div>
+
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Group Type:</p>
+          <p className="text-gray-800">{selectedPackage.groupType}</p>
+        </div>
+
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Installments Plan:</p>
+          <p className="text-gray-800">
+            {selectedPackage.installmentsPlan}
+          </p>
+        </div>
+
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Package Type:</p>
+          <p className="text-gray-800">{selectedPackage.packageType}</p>
+        </div>
+
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Contest:</p>
+          <p className="text-gray-800">{selectedPackage.contest}</p>
+        </div>
+
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Status:</p>
+          <p className="text-gray-800">{selectedPackage.status}</p>
+        </div>
+
+        <div className="border-b pb-2 flex justify-between">
+          <p className="text-gray-600 font-medium">Created By:</p>
+          <p className="text-gray-800">{selectedPackage.createdBy}</p>
+        </div>
+
+        <div className="flex justify-between">
+          <p className="text-gray-600 font-medium">Created At:</p>
+          <p className="text-gray-800">{selectedPackage.createdAt}</p>
         </div>
       </div>
-
-      {/* Search & Filter */}
-      <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
-        <input
-          type="text"
-          placeholder="Quick search..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full md:w-1/3 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button className="flex items-center gap-2 px-4 py-2 border rounded-md text-gray-700 hover:outline-none hover:ring-2 hover:ring-blue-500">
-          <BiFilterAlt size={18} />
-          Filter
-        </button>
-      </div>
-
-
-      <CustomTable
-        columns={columns}
-        rows={packages}
-        showCheckbox={true}
-        rowTemplate={(row) => (
-          <>
-            <td className="py-3 px-2">{row.packageName}</td>
-            <td className="py-3 px-2">{row.prizePool}</td>
-            <td className="py-3 px-2">{row.currency}</td>
-            <td className="py-3 px-2">{row.adminFee}</td>
-            <td className="py-3 px-2">{row.price}</td>
-            <td className="py-3 px-2"><img src={row.image} alt="Package" className="w-10 h-10 rounded" /></td>
-            <td className="py-3 px-2">{row.age}</td>
-            <td className="py-3 px-2">{row.groupType}</td>
-            <td className="py-3 px-2">{row.installmentsPlan}</td>
-            <td className="py-3 px-2">{row.packageType}</td>
-            <td className="py-3 px-2">{row.contest}</td>
-            <td className="py-3 px-2">{row.createdBy}</td>
-            <td className="py-3 px-2">{row.status}</td>
-            {/* <td className="py-3 px-2">{row.createdAt}</td> */}
-            <td className="whitespace-nowrap">
-              <button className="m-2"><PiPencilSimpleDuotone size={20} /></button>
-              <button className="m-2"
-                onClick={() => router.push(`/packages/view-package?id=${row.id}`)}              >
-                <PiEyeDuotone size={20} />
-              </button>
-              <button className="m-2"><AiTwotoneDelete size={20} /></button>
-            </td>
-          </>
-        )}
-      />
     </div>
   );
 }

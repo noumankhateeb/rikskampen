@@ -6,6 +6,7 @@ import { toggleHamburger } from "@/store/Navbar/Navbar-Slice";
 import { useState, useRef, useEffect } from "react";
 import { PiBell, PiBellDuotone, PiGearDuotone, PiPulseDuotone, PiSignOut, PiUserDuotone } from "react-icons/pi";
 import { setActiveMenu } from "@/store/Sidebar/Sidebar-Slice";
+import Link from "next/link";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -173,10 +174,12 @@ const Navbar = () => {
 
               <div>
                 <ul>
-                  <li className="px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-gray-100 hover:text-black cursor-pointer flex items-center gap-2 h-10">
-                    <PiUserDuotone size={20} />
-                    Profile
-                  </li>
+                  <Link href="/edit-profile">
+                    <li className="px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-gray-100 hover:text-black cursor-pointer flex items-center gap-2 h-10">
+                      <PiUserDuotone size={20} />
+                      Profile
+                    </li>
+                  </Link>
                   <li className="px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-gray-100 hover:text-black cursor-pointer flex items-center gap-2 h-10">
                     <PiGearDuotone size={20} />
                     Account Settings

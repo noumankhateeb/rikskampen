@@ -61,7 +61,7 @@ export default function Packages() {
     { key: "status", label: "Status" },
     { key: "source2Id", label: "Source2 ID" },
     { key: "sourceType2Id", label: "Source Type2 ID" },
-    { key: "createdAt", label: "Created At" },
+    // { key: "createdAt", label: "Created At" },
     { key: "Action", label: "Actions", center: true },
   ];
 
@@ -71,7 +71,7 @@ export default function Packages() {
 
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-4 space-y-4 md:space-y-0">
-        <h2 className="font-bold text-2xl">Contests</h2>
+        <h2 className="font-bold text-2xl">Discount Codes</h2>
         <div className="flex gap-2">
           <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
             onClick={() => router.push("/contests/add-contest")}>
@@ -112,15 +112,15 @@ export default function Packages() {
             <td className="py-3 px-4 text-left">{row.totalDiscount}</td>
             <td className="py-3 px-4 text-left">{row.contestantDiscount}</td>
             <td className="py-3 px-4 text-left">{row.kickback}</td>
-            <td className="py-3 px-4 text-left">{row.seoUrl}</td>
+            <td className="py-3 px-4 text-left max-w-40 truncate">{row.seoUrl}</td>
             <td className="py-3 px-4 text-left">{row.business}</td>
             <td className="py-3 px-4 text-left">{row.invoiceByCompany}</td>
             <td className="py-3 px-4 text-left">{row.type}</td>
             <td className="py-3 px-4 text-left">{row.status}</td>
             <td className="py-3 px-4 text-left">{row.source2Id}</td>
             <td className="py-3 px-4 text-left">{row.sourceType2Id}</td>
-            <td className="py-3 px-4 text-left">{row.createdAt}</td>
-            <td>
+            {/* <td className="py-3 px-4 text-left">{row.createdAt}</td> */}
+            <td className="whitespace-nowrap">
               <button className="hover:text-black m-2"><PiPencilSimpleDuotone size={20} /></button>
               <button className="hover:text-black m-2" onClick={() => router.push(`/discounts/view-discount?code=${row.code}`)}><PiEyeDuotone size={20} /></button>
               <button className="hover:text-black m-2"><AiTwotoneDelete size={20} /></button>

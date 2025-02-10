@@ -3,12 +3,13 @@
 import React from "react";
 import { PiUserBold, PiCurrencyDollarBold, PiRepeatBold, PiLinkBold } from "react-icons/pi";
 import { FaGoogle, FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { CiDumbbell } from "react-icons/ci";
 
 const stats = [
-  { id: 1, title: "Total marketing spend", value: "$192,817", change: "+5.3%", description: "vs last month", icon: <PiUserBold className="text-red-500 text-3xl" />, bg: "bg-red-100" },
+  { id: 1, title: "Total Contestants", value: "$192,817", change: "+5.3%", description: "vs last month", icon: <PiUserBold className="text-red-500 text-3xl" />, bg: "bg-red-100" },
   { id: 2, title: "ROI", value: "270%", change: "+8.1%", description: "vs last month", icon: <PiCurrencyDollarBold className="text-blue-500 text-3xl" />, bg: "bg-blue-100" },
   { id: 3, title: "Conversion rates", value: "4.5%", change: "+0.9%", description: "vs last month", icon: <PiRepeatBold className="text-green-500 text-3xl" />, bg: "bg-green-100" },
-  { id: 4, title: "Total leads", value: "1,289", change: "+16.2%", description: "vs last month", icon: <PiLinkBold className="text-purple-500 text-3xl" />, bg: "bg-purple-100" },
+  { id: 4, title: "Workout Available", value: "74", change: "+16.2%", description: "vs last month", icon: <CiDumbbell className="text-purple-500 text-3xl" />, bg: "bg-purple-100" },
 ];
 
 const pages = [
@@ -207,7 +208,7 @@ const Dashboard = () => {
 
 
       {/* Traffic Data */}
-      <div className="bg-white shadow-md rounded-lg p-5 mt-6">
+      <div className="bg-white shadow-md rounded-lg p-5 mt-6  overflow-auto">
         <h2 className="text-lg font-semibold mb-4">Traffic Data</h2>
         <table className="w-full text-sm text-gray-600">
           <thead>

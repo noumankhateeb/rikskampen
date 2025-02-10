@@ -11,6 +11,7 @@ import {
   PiEyeDuotone,
 } from "react-icons/pi";
 import CustomTable from "../components/CustomTable";
+import Modal from "../components/Modal";
 
 interface Contest {
   id: number;
@@ -39,6 +40,8 @@ const contests: Contest[] = [
 
 export default function Packages() {
   const [search, setSearch] = useState("");
+
+  const [openModal, setOpenModal] = useState(false);
 
   const router = useRouter();
 
@@ -81,7 +84,10 @@ export default function Packages() {
           onChange={(e) => setSearch(e.target.value)}
           className="w-full md:w-1/3 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button className="flex items-center gap-2 px-4 py-2 border rounded-md text-gray-700 hover:outline-none hover:ring-2 hover:ring-blue-500">
+        <button
+          onClick={() => setOpenModal(true)}
+          className="flex items-center gap-2 px-4 py-2 border rounded-md text-gray-700 hover:outline-none hover:ring-2 hover:ring-blue-500"
+        >
           <BiFilterAlt size={18} />
           Filter
         </button>
@@ -110,6 +116,8 @@ export default function Packages() {
           </>
         )}
       />
+
+      {openModal && <Modal />}
 
     </div>
   );
