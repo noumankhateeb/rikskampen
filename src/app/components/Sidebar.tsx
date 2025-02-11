@@ -12,10 +12,10 @@ import { setActiveMenu } from "@/store/Sidebar/Sidebar-Slice";
 import { setHamburgerOpen } from "@/store/Navbar/Navbar-Slice"; // Make sure this action exists
 
 export default function Sidebar() {
-    const dispatch = useDispatch();
     const { activeMenu } = useSelector((state: RootState) => state.sidebar);
     const { isHamburgerOpen } = useSelector((state: RootState) => state.navbar);
-    console.log('Aaaaaaa', isHamburgerOpen);
+
+    const dispatch = useDispatch();
     const pathname = usePathname();
 
     // State to track if we're on a mobile viewport (width less than 768px)
