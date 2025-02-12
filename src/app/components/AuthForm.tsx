@@ -17,6 +17,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
       : "Please fill in your details to sign up!";
   const submitButtonText = mode === "signin" ? "Sign In" : "Sign Up";
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form submission
+    router.push("/"); // Redirect to home path
+  };
+
   return (
     <div className="flex h-screen overflow-auto">
       {/* Main Container */}
@@ -43,7 +48,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
             </div>
 
             {/* Form */}
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                 <input

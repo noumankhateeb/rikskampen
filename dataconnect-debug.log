@@ -1,0 +1,10 @@
+I0212 11:11:58.540596   14060 load.go:37] Reloading schema and connectors...
+I0212 11:11:58.772596   14060 control.go:59] [/emulator/rikskampens 3ddb] UpdateResources(): done
+Schema: sources: schema\schema.gql [3049B] 
+Connector "default": sources: connector\mutations.gql [1233B] connector\queries.gql [1802B] 
+I0212 11:11:58.874997   14060 codegen.go:82] [connector "default" javascriptSdk] Generating sources into "E:\\rikskampen\\dataconnect-generated\\js\\default-connector"
+I0212 11:11:58.890316   14060 collector.go:107] schema extensions wrote into "E:\\rikskampen\\dataconnect\\.dataconnect\\schema"
+Generated sources: main\input.gql [22605B] main\query.gql [1014B] prelude.gql [65151B] main\mutation.gql [3161B] 
+I0212 11:11:58.929117   14060 collector.go:107] connector "default" javascriptSdk wrote into "E:\\rikskampen\\dataconnect-generated\\js\\default-connector"
+Generated sources: esm\index.esm.js [171B] index.cjs.js [212B] README.md [2740B] react\index.cjs.js [102B] react\esm\package.json [17B] react\esm\index.esm.js [93B] index.d.ts [337B] esm\package.json [17B] package.json [836B] react\index.d.ts [128B] react\package.json [468B] 
+I0212 11:11:59.196650   14060 installsdk.go:76] Running command: C:\Program Files\nodejs\npm.cmd install file:dataconnect-generated\js\default-connector

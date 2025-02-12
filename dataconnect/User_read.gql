@@ -1,0 +1,56 @@
+
+# This is a file for you to write an un-named query.
+# Only one un-named query is allowed per file.
+query {
+  users{
+    roleId
+    name
+    email
+    lockoutTime
+    avatar
+    photo
+    password
+    apiToken
+    apiKey
+    token
+    tokenValidity
+    rememberToken
+    settings
+    designation
+    sex
+    dob
+    age
+    mobile
+    phone
+    address
+    street
+    city
+    district
+    state
+    country
+    nationalId
+    height
+    heightUnit
+    weight
+    weightUnit
+    waist
+    waistUnit
+    status
+    acceptedGdpr
+    emailSent
+    emailVerifiedAt
+    permissions
+    partnerId
+    web
+    ipAddress
+    agent
+    isAnonymized
+    deletedAt
+    createdAt
+    updatedAt
+    stripeId
+    cardBrand
+    cardLastFour
+    trialEndsAt
+  }
+}

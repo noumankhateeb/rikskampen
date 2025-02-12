@@ -1,0 +1,12 @@
+specVersion: "v1beta"
+serviceId: "rikskampens"
+location: "europe-west1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "rikskampens-db"
+      cloudSql:
+        instanceId: "rikskampens"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

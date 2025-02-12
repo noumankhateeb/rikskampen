@@ -1,0 +1,7 @@
+# This is a file for you to write an un-named mutation. 
+# Only one un-named mutation is allowed per file.
+mutation {
+  user_insert(
+    data: {id: "11111111222233334444555555555555", acceptedGdpr: false, address: "", age: 0, agent: "", apiKey: "", apiToken: "", avatar: "", cardBrand: "", cardLastFour: "", city: "", country: 0, createdAt: "", deletedAt: "", designation: "", district: "", dob: "", email: "", emailSent: 0, emailVerifiedAt: "", height: "", heightUnit: "", ipAddress: "", isAnonymized: false, lockoutTime: 0, mobile: "", name: "", nationalId: 0, partnerId: 0, password: "", permissions: "", phone: "", photo: "", rememberToken: "", roleId: 0, settings: "", sex: "", state: "", status: "", street: "", stripeId: "", token: "", tokenValidity: "", trialEndsAt: "", updatedAt: "", waist: 0, waistUnit: "", web: "", weight: "", weightUnit: ""}
+  )
+}
